@@ -1,0 +1,26 @@
+server:
+ port: 7002
+
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 1000   #设置清理的间隔时间，而后这个时间使用的是毫秒单位（默认是60秒）
+    enable-self-preservation: true #设置为false表示关闭保护模式
+  client:
+    #是否将该实例信息注册到其他eureka server上；如果设置为false，那么该server无法被其他server发现，但是仍然可以发现其他server
+    register-with-eureka: false
+    #是否允许该客户端从eureka server上获取注册信息
+    fetch-registry: false
+    service-url:
+#      defaultZone: http://admin:admin@localhost:7001/eureka
+      defaultZone: http://admin:admin@eureka1:7001/eureka,http://admin:admin@eureka2:7002/eureka,http://admin:admin@eureka3:7003/eureka
+  instance: # eureak实例定义
+    hostname: eureka2 # 定义 Eureka 实例所在的主机名称
+
+#在同一台机器上创建3个节点的eureka集群，分别是eureka1，eureka2和eureka3
+#修改hosts文件，使eureka1，eureka2和eureka3都指向127.0.0.1, 具体路径是C:\Windows\System32\drivers\etc\HOSTS
+
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
