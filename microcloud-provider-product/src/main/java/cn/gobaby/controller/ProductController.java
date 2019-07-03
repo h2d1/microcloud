@@ -1,6 +1,5 @@
 package cn.gobaby.controller;
 
-
 import cn.gobaby.entity.UserBean;
 import cn.gobaby.service.UserService;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -29,7 +28,11 @@ public class ProductController {
     @RequestMapping(value="/get/{id}")
     public String getuser(@PathVariable("id") long id) {
         UserBean bean = userService.get(id);
-        return bean.toString();
+        if(bean != null){
+            return bean.toString();
+        }else{
+            return "{}";
+        }
     }
 
     @RequestMapping(value="/add")
