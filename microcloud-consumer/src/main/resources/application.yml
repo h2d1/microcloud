@@ -1,8 +1,12 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
     name: microcloud-consumer
-
+eureka:
+  client:
+    register-with-eureka: false # 消费方不需要注册到Eureka服务器
+    service-url:
+      defaultZone: http://admin:gobaby@eureka1:7001/eureka,http://admin:gobaby@eureka2:7002/eureka,http://admin:gobaby@eureka3:7003/eureka
 

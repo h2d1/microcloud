@@ -1,5 +1,7 @@
 package cn.gobaby.config;
 
+import com.netflix.loadbalancer.IRule;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -10,7 +12,9 @@ import java.util.Base64;
 
 @Configuration
 public class RestConfig {
+
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return  new RestTemplate();
     }
@@ -25,4 +29,18 @@ public class RestConfig {
         headers.set("Authorization", authHeader);
         return headers;
     }
+
+    /**
+     * 设置全局的访问策略，其中IRule就是所有规则的标准
+     * @return
+     */
+//    @Bean
+//    public IRule ribbonRule() {
+//        return new com.netflix.loadbalancer.RandomRule(); // 随机的访问策略
+//    }
+
+/**
+ * 如需指定某个服务使用随机的访问策略，这个需要注释，并且配置RibbonConfig.class(在里面设置随机策略)
+ * 启动项目的时候，在ConsumerApp配置@RibbonClient，指定某个服务访问策略为RibbonConfig.class
+ */
 }

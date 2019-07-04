@@ -2,7 +2,6 @@ package cn.gobaby.controller;
 
 import cn.gobaby.entity.UserBean;
 import cn.gobaby.service.UserService;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -24,7 +22,7 @@ public class ProductController {
 
     @RequestMapping(value="/hello/{name}")
     public String hello(@PathVariable("name") String name) {
-        return "No1:hello " + name;
+        return "No3:hello " + name;
     }
 
     @RequestMapping(value="/get/{id}")

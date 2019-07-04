@@ -1,16 +1,17 @@
 package cn.gobaby;
 
-import cn.ribbon.config.RibbonConfig;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
+@MapperScan("cn.gobaby.mapper")
 @EnableEurekaClient
-@RibbonClient(name = "MICROCLOUD-PROVIDER-PRODUCT", configuration = RibbonConfig.class)
-public class ConsumerApp {
+@EnableDiscoveryClient
+public class ProductApp2 {
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerApp.class,args);
+        SpringApplication.run(ProductApp2.class,args);
     }
 }
